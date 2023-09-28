@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -19,6 +20,7 @@ function LoginScreen({ navigation }) {
     })
       .then((response) => response.json())
       .then((responseData) => {
+        AsyncStorage.setItem('userData', JSON.stringify(responseData));
         console.log(JSON.stringify(responseData));
     
        
